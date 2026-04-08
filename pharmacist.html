@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pharmacist Haleem Sahil</title>
+  <!-- Tailwind CSS + Google Fonts + Font Awesome Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Custom transition for scroll reveal */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .fade-up.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* FAQ accordion smooth transition */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease-out, padding 0.2s ease;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .faq-answer.open {
+      max-height: 320px;   /* enough for answers */
+      padding-top: 0.75rem;
+      padding-bottom: 0.5rem;
+    }
+    /* Back to top button visibility */
+    .back-to-top {
+      transition: all 0.25s ease;
+    }
+    /* custom smooth hover for cards */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 text-gray-800">
+
+  <!-- STICKY NAVBAR -->
+  <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-md shadow-sm border-b border-emerald-100/60">
+    <div class="container mx-auto px-5 lg:px-8 py-3 flex items-center justify-between flex-wrap">
+      <!-- Logo / Brand -->
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-prescription-bottle text-teal-600 text-2xl"></i>
+        <span class="font-bold text-xl tracking-tight text-gray-800">Haleem<span class="text-teal-600">Sahil</span></span>
+      </div>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8 text-gray-700 font-medium">
+        <a href="#home" class="nav-link hover:text-teal-600 transition">Home</a>
+        <a href="#about" class="nav-link hover:text-teal-600 transition">About</a>
+        <a href="#experience" class="nav-link hover:text-teal-600 transition">Experience</a>
+        <a href="#services" class="nav-link hover:text-teal-600 transition">Services</a>
+        <a href="#faq" class="nav-link hover:text-teal-600 transition">FAQ</a>
+        <a href="#contact" class="nav-link hover:text-teal-600 transition">Contact</a>
+      </nav>
+      <!-- CTA Button Desktop -->
+      <div class="hidden md:block">
+        <a href="https://wa.me/+93774234023?text=Hello%20I%20need%20pharmacy%20consultation" target="_blank" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition flex items-center gap-2"><i class="fab fa-whatsapp"></i> Consult Now</a>
+      </div>
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="block md:hidden text-gray-700 focus:outline-none text-2xl">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-t border-emerald-100 py-4 px-6 flex flex-col space-y-4 shadow-lg">
+      <a href="#home" class="mobile-nav-link text-gray-700 hover:text-teal-600 font-medium py-1">🏠 Home</a>
+      <a href="#about" class="mobile-nav-link text-gray-700 hover:text-teal-600 font-medium py-1">📋 About</a>
+      <a href="#experience" class="mobile-nav-link text-gray-700 hover:text-teal-600 font-medium py-1">💼 Experience</a>
+      <a href="#services" class="mobile-nav-link text-gray-700 hover:text-teal-600 font-medium py-1">💊 Services</a>
+      <a href="#faq" class="mobile-nav-link text-gray-700 hover:text-teal-600 font-medium py-1">❓ FAQ</a>
+      <a href="#contact" class="mobile-nav-link text-gray-700 hover:text-teal-600 font-medium py-1">📞 Contact</a>
+      <div class="pt-2">
+        <a href="https://wa.me/+93774234023?text=Hello%20Mr.Haleem%20I%20need%20pharmacy%20consultation" target="_blank" class="bg-teal-600 w-full text-center block text-white px-4 py-2 rounded-full text-sm font-semibold"><i class="fab fa-whatsapp mr-2"></i> WhatsApp Consult</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="overflow-hidden">
+    <!-- HERO SECTION -->
+    <section id="home" class="relative py-16 md:py-24 px-5 scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-6xl grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center bg-teal-50 text-teal-700 px-4 py-1.5 rounded-full text-sm font-medium mb-6"><i class="fas fa-shield-alt mr-2"></i> Licensed Clinical Pharmacist</div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900">Dr. Haleem Sahil <span class="text-teal-600">Pharmacist</span></h1>
+          <p class="text-xl text-gray-600 mt-4">Your Trusted Partner in Medication & Health Advice — Evidence-based care with a human touch.</p>
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="https://wa.me/+93774234023?text=Hello%20Mr.Haleem%20I%20need%20pharmacy%20consultation" target="_blank" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg flex items-center gap-2 transition"><i class="fab fa-whatsapp text-xl"></i> Consult on WhatsApp</a>
+            <a href="#services" class="border border-gray-300 hover:border-teal-400 text-gray-700 hover:text-teal-600 px-6 py-3 rounded-full font-medium transition">Explore Services →</a>
+          </div>
+          <div class="flex items-center gap-6 mt-8 text-sm text-gray-500">
+            <span><i class="fas fa-check-circle text-teal-500 mr-1"></i> 6+ years exp.</span>
+            <span><i class="fas fa-user-md text-teal-500 mr-1"></i> 5k+ consultations</span>
+            <span><i class="fas fa-star text-teal-500 mr-1"></i> 98% satisfaction</span>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-tr from-teal-100 to-emerald-100 shadow-2xl p-1">
+            <img src="./img.jpeg" alt="Pharmacist portrait" class="w-full h-full object-cover rounded-full shadow-inner border-4 border-white">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-16 bg-white/60 px-5 scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <span class="text-teal-600 font-semibold tracking-wide">WHO I AM</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Dedicated to Smarter Medication Use</h2>
+          <div class="w-20 h-1 bg-teal-400 mx-auto mt-4 rounded-full"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <div class="space-y-4">
+            <p class="text-gray-700 text-lg leading-relaxed">Dr. Haleem Sahil is a board-certified clinical pharmacist with over 6 years of experience bridging the gap between complex medical therapies and everyday patient care.</p>
+            <p class="text-gray-600">He earned his Diploma in Pharmacy from the Institute of Ariana Nangarhar. As a passionate medication safety advocate, he empowers patients with clear, actionable guidance.</p>
+            <div class="grid grid-cols-2 gap-4 pt-3">
+              <div class="bg-emerald-50 rounded-xl p-3"><i class="fas fa-graduation-cap text-teal-600 text-xl"></i><p class="font-semibold mt-1">Diploma in Pharmacy</p><p class="text-xs text-gray-500">Board Certified</p></div>
+              <div class="bg-emerald-50 rounded-xl p-3"><i class="fas fa-heartbeat text-teal-600 text-xl"></i><p class="font-semibold mt-1">Pharmacology</p><p class="text-xs text-gray-500">Favorite Specialization</p></div>
+            </div>
+          </div>
+          <div class="bg-white/80 rounded-2xl shadow-lg p-6 border border-emerald-100">
+            <h3 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-id-card text-teal-600"></i> Qualities & Capabilities</h3>
+            <ul class="mt-4 space-y-3">
+              <li class="flex gap-2"><i class="fas fa-check-circle text-teal-500 mt-1"></i> Strong Knowledge of Medicines</li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-teal-500 mt-1"></i> Ability to Read and Verify Prescriptions</li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-teal-500 mt-1"></i> Clear Communication with Patients</li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-teal-500 mt-1"></i> Attention to details and accuracy</li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-teal-500 mt-1"></i> Patient Care and Empathy</li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-teal-500 mt-1"></i> Maintaining confidentiality and ethics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & EXPERTISE (Timeline / Card Layout) -->
+    <section id="experience" class="py-16 px-5 bg-gradient-to-r from-slate-50 to-white scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-10">
+          <span class="text-teal-600 font-semibold">PROFESSIONAL JOURNEY</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Experience & Key Milestones</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl shadow-md p-6 card-hover border border-teal-50">
+            <div class="text-teal-600 text-4xl mb-3"><i class="fas fa-calendar-alt"></i></div>
+            <h3 class="text-2xl font-bold">6+ Years</h3>
+            <p class="text-gray-500 mt-1">Clinical Practice Experience</p>
+            <p class="text-gray-600 mt-3">Hospital, retail & telehealth settings. Expert in medication therapy management.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-md p-6 card-hover border border-teal-50">
+            <div class="text-teal-600 text-4xl mb-3"><i class="fas fa-hospital-user"></i></div>
+            <h3 class="text-xl font-bold">Leading Pharmacies</h3>
+            <p class="text-gray-600 mt-2"> Serat Pharmacy</p>
+            <p class="text-gray-500 text-sm mt-2">Clinical lead & medication safety advisor.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-md p-6 card-hover border border-teal-50">
+            <div class="text-teal-600 text-4xl mb-3"><i class="fas fa-trophy"></i></div>
+            <h3 class="text-xl font-bold">Key Achievements</h3>
+            <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+              <li>Honored for Excellence in Patient Care</li>
+              <li>Great Pharmacy Management</li>
+              <li>Launched virtual medication review program</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES OFFERED (Cards with Icons) -->
+    <section id="services" class="py-16 px-5 scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <i class="fas fa-briefcase-medical text-teal-600 text-3xl"></i>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Pharmacy Services</h2>
+          <p class="text-gray-500 max-w-2xl mx-auto mt-2">Expert guidance for every medication-related need</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition p-6 border-l-4 border-teal-400 card-hover"><i class="fas fa-prescription text-teal-600 text-3xl mb-3"></i><h3 class="text-xl font-semibold">Prescription Guidance</h3><p class="text-gray-500 mt-2">Clarify dosages, interactions, and optimize therapeutic outcomes.</p></div>
+          <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition p-6 border-l-4 border-teal-400 card-hover"><i class="fas fa-info-circle text-teal-600 text-3xl mb-3"></i><h3 class="text-xl font-semibold">Drug Info & Side Effects</h3><p class="text-gray-500 mt-2">Comprehensive counseling on adverse effects & management.</p></div>
+          <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition p-6 border-l-4 border-teal-400 card-hover"><i class="fas fa-chronicle text-teal-600 text-3xl mb-3"></i><h3 class="text-xl font-semibold">Chronic Disease Support</h3><p class="text-gray-500 mt-2">Diabetes, hypertension, asthma — personalized plans.</p></div>
+          <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition p-6 border-l-4 border-teal-400 card-hover"><i class="fas fa-capsules text-teal-600 text-3xl mb-3"></i><h3 class="text-xl font-semibold">OTC Medication Advice</h3><p class="text-gray-500 mt-2">Safe self-care recommendations & non-prescription therapies.</p></div>
+          <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition p-6 border-l-4 border-teal-400 card-hover"><i class="fas fa-exchange-alt text-teal-600 text-3xl mb-3"></i><h3 class="text-xl font-semibold">Drug Interaction Checks</h3><p class="text-gray-500 mt-2">Identify & prevent harmful drug–drug or herb interactions.</p></div>
+          <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition p-6 border-l-4 border-teal-400 card-hover"><i class="fas fa-video text-teal-600 text-3xl mb-3"></i><h3 class="text-xl font-semibold">Tele-consultation</h3><p class="text-gray-500 mt-2">Remote, convenient medication reviews via WhatsApp/audio.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (Accordion with JS) -->
+    <section id="faq" class="py-16 px-5 bg-white/70 scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-4xl">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold">Frequently Asked Questions</h2>
+          <p class="text-gray-500 mt-2">Answers to common pharmacy concerns</p>
+        </div>
+        <div class="space-y-4" id="faq-container">
+          <!-- FAQ item 1 -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-gray-800 hover:bg-teal-50 transition">
+              <span><i class="fas fa-question-circle text-teal-500 mr-3"></i>Do I need a prescription for antibiotics?</span>
+              <i class="fas fa-chevron-down text-teal-500 transition-transform duration-200"></i>
+            </button>
+            <div class="faq-answer px-6 text-gray-600 border-t border-gray-100 hidden-answer"><p>Yes, antibiotics require a valid prescription from a licensed prescriber. Taking antibiotics without professional oversight can lead to resistance and side effects. I'm happy to guide you on proper usage after a doctor's prescription.</p></div>
+          </div>
+          <!-- FAQ item 2 -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-gray-800 hover:bg-teal-50 transition">
+              <span><i class="fas fa-question-circle text-teal-500 mr-3"></i>Can I take ibuprofen with my blood pressure medication?</span>
+              <i class="fas fa-chevron-down text-teal-500 transition-transform duration-200"></i>
+            </button>
+            <div class="faq-answer px-6 text-gray-600 border-t border-gray-100 hidden-answer"><p>Long-term use of NSAIDs like ibuprofen may interfere with certain BP meds (e.g., ACE inhibitors). Short-term use might be okay but consult me for a personalized safety review. Alternatives like acetaminophen may be safer.</p></div>
+          </div>
+          <!-- FAQ item 3 -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-gray-800 hover:bg-teal-50 transition">
+              <span><i class="fas fa-question-circle text-teal-500 mr-3"></i>How do you conduct a medication consultation?</span>
+              <i class="fas fa-chevron-down text-teal-500 transition-transform duration-200"></i>
+            </button>
+            <div class="faq-answer px-6 text-gray-600 border-t border-gray-100 hidden-answer"><p>I review your current medications, allergies, and conditions. We discuss potential interactions, side effect management, and adherence tips. It's a 15-20 min session via WhatsApp or call. Your safety is my priority.</p></div>
+          </div>
+          <!-- FAQ item 4 -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-gray-800 hover:bg-teal-50 transition">
+              <span><i class="fas fa-question-circle text-teal-500 mr-3"></i>Is telepharmacy consultation effective?</span>
+              <i class="fas fa-chevron-down text-teal-500 transition-transform duration-200"></i>
+            </button>
+            <div class="faq-answer px-6 text-gray-600 border-t border-gray-100 hidden-answer"><p>Absolutely! Many studies show telepharmacy improves medication adherence and reduces errors. You get expert advice from home, saving time and ensuring safe medication use.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (Optional but recommended) -->
+    <section id="testimonials" class="py-16 px-5 bg-emerald-50/40 scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-10">
+          <i class="fas fa-star text-yellow-500 text-2xl"></i>
+          <h2 class="text-3xl font-bold mt-2">Patient Stories</h2>
+          <p class="text-gray-500">Trusted by hundreds of individuals & families</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div class="bg-white p-6 rounded-2xl shadow-md"><i class="fas fa-quote-left text-teal-300 text-2xl"></i><p class="mt-3 text-gray-600">Dr. Haleem explained my blood thinner interactions in plain English. Her advice prevented a dangerous mix-up. Highly recommend!</p><div class="flex items-center mt-4"><i class="fas fa-user-circle text-gray-400 text-2xl mr-2"></i><div><p class="font-semibold">— Ahmad.</p><p class="text-xs text-gray-400">Hypertension patient</p></div></div></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md"><i class="fas fa-quote-left text-teal-300 text-2xl"></i><p class="mt-3 text-gray-600">His chronic disease support changed how I manage Depression. The personalized plan made a real difference in my previous and today's condition.</p><div class="flex items-center mt-4"><i class="fas fa-user-circle text-gray-400 text-2xl mr-2"></i><div><p class="font-semibold">— Zubair.</p><p class="text-xs text-gray-400">Depression patient</p></div></div></div>
+          <div class="bg-white p-6 rounded-2xl shadow-md"><i class="fas fa-quote-left text-teal-300 text-2xl"></i><p class="mt-3 text-gray-600">Fast, professional and thorough consultation via WhatsApp. I got clarity on my antidepressant side effects in minutes.</p><div class="flex items-center mt-4"><i class="fas fa-user-circle text-gray-400 text-2xl mr-2"></i><div><p class="font-semibold">— Riaz.</p><p class="text-xs text-gray-400">Medication review</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION (WhatsApp focus) -->
+    <section id="contact" class="py-16 px-5 bg-white scroll-mt-20 fade-up">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold">Ready for Expert Advice?</h2>
+        <p class="text-gray-600 mt-3 text-lg">Reach out for medication reviews, safety checks, or chronic care support.</p>
+        <div class="mt-10 flex flex-wrap justify-center gap-6">
+          <a href="https://wa.me/+93774234023?text=Hello%20Mr.Haleem%20I%20need%20pharmacy%20consultation" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl flex items-center gap-3 transition"><i class="fab fa-whatsapp text-2xl"></i> Consult on WhatsApp</a>
+          <div class="bg-gray-50 rounded-2xl p-5 flex flex-col items-center gap-2 min-w-[220px] shadow"><i class="fas fa-phone-alt text-teal-600 text-xl"></i><p class="font-medium">+93 77 423 4023</p><p class="text-sm text-gray-500">Call / text (9am–6pm)</p></div>
+          <div class="bg-gray-50 rounded-2xl p-5 flex flex-col items-center gap-2 min-w-[220px] shadow"><i class="fas fa-envelope text-teal-600 text-xl"></i><p class="font-medium">haleemsahil.2025@gmail.com</p><p class="text-sm text-gray-500">24h response</p></div>
+        </div>
+        <div class="mt-8 flex items-center justify-center gap-2 text-gray-500"><i class="fas fa-map-marker-alt text-teal-500"></i><span>Available in Serat Pharmacy,Jalalabad Pashtunistan Watt Haji Gul Plaza Block-A</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-300 py-10 px-5 mt-10">
+    <div class="container mx-auto max-w-6xl flex flex-col md:flex-row justify-center items-center gap-6">
+      <p class="text-sm">© 2026 Dr. Haleem Sahil — Evidence-based pharmacy care — All rights reserved.</p>
+      <p class="text-sm">Website Developed by Eng.Amjad Amin</p>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" class="back-to-top fixed bottom-6 right-6 bg-teal-600 text-white p-3 rounded-full shadow-lg hover:bg-teal-700 transition-all opacity-0 invisible z-40"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    (function() {
+      // --- Mobile menu toggle
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          const icon = menuBtn.querySelector('i');
+          if (icon) icon.classList.toggle('fa-bars');
+          if (icon) icon.classList.toggle('fa-times');
+        });
+      }
+
+      // Close mobile menu on link click + smooth scroll
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      const desktopNavLinks = document.querySelectorAll('.nav-link');
+      const allNavLinks = [...mobileNavLinks, ...desktopNavLinks];
+      
+      allNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            const icon = menuBtn?.querySelector('i');
+            if (icon) {
+              icon.classList.remove('fa-times');
+              icon.classList.add('fa-bars');
+            }
+          }
+        });
+      });
+
+      // --- FAQ Accordion (JS expand/collapse)
+      const faqItems = document.querySelectorAll('.faq-question');
+      faqItems.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answerDiv = btn.nextElementSibling;
+          const chevronIcon = btn.querySelector('.fa-chevron-down');
+          // close others optional? We'll toggle current, but any open style we allow multiple? For better UX, we can close others if needed.
+          // But prompt: expand/collapse with JS, we toggle independently.
+          if (answerDiv.classList.contains('open')) {
+            answerDiv.classList.remove('open');
+            if (chevronIcon) chevronIcon.style.transform = 'rotate(0deg)';
+          } else {
+            answerDiv.classList.add('open');
+            if (chevronIcon) chevronIcon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+      // Initialize all answers closed + set icons default
+      document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.remove('open'));
+      document.querySelectorAll('.faq-question .fa-chevron-down').forEach(icon => icon.style.transform = 'rotate(0deg)');
+
+      // --- Scroll reveal (Intersection Observer for fade-up sections)
+      const fadeElements = document.querySelectorAll('.fade-up');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+      fadeElements.forEach(el => observer.observe(el));
+      
+      // Trigger immediate for visible sections (just in case)
+      window.addEventListener('load', () => {
+        fadeElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 80) el.classList.add('revealed');
+        });
+      });
+
+      // --- Back to Top button visibility & scroll
+      const backBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backBtn.classList.remove('opacity-0', 'invisible');
+          backBtn.classList.add('opacity-100', 'visible');
+        } else {
+          backBtn.classList.add('opacity-0', 'invisible');
+          backBtn.classList.remove('opacity-100', 'visible');
+        }
+      });
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
